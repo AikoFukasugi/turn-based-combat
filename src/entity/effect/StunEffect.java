@@ -1,7 +1,6 @@
 package entity.effect;
 
 import boundary.GameUI;
-import entity.combatant.Combatant;
 
 public class StunEffect extends StatusEffect {
     public StunEffect(int duration) { 
@@ -11,7 +10,7 @@ public class StunEffect extends StatusEffect {
     }
 
     @Override
-    public void onExpire(Combatant c, GameUI ui) {
-        ui.displayActionResult("Stun effect on " + c.getName() + " has expired.");
+    public void onExpire(String c, GameUI ui) {
+        ui.displayActionResult("Stun effect on " + c + " has expired.");
     }
 }

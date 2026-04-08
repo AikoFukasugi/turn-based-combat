@@ -8,14 +8,9 @@ import entity.item.Item;
 
 public class Warrior extends Player {
 
+
     public Warrior(List<Item> items) {
-        super(items);
-        this.name = "Warrior";
-        this.hp = 260;
-        this.maxHp = 260;
-        this.attack = 40;
-        this.defense = 20;
-        this.speed = 30;
+        super("Warrior", 260, 40, 20, 30, items);
     }
 
     @Override

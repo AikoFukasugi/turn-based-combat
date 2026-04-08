@@ -10,6 +10,7 @@ C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\action\DefendAc
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\action\ItemAction.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\action\SpecialSkillAction.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\combatant\Combatant.java
+C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\combatant\CombatantStatusEffects.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\combatant\Enemy.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\combatant\Goblin.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\combatant\Player.java
@@ -30,3 +31,4 @@ C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\item\PowerStone
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\item\SmokeBomb.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\level\Difficulty.java
 C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\entity\level\Level.java
+C:\Users\chowy\Documents\ntu\SC2002\turn_based_combat\src\tests\CombatantStatusEffectsTest.java

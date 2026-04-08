@@ -51,7 +51,7 @@ public class BattleEngine {
             for (Combatant combatant : turnOrder) {
                 if (!combatant.isAlive()) continue;
                 // Status effects applied by self tick at the beginning of the next turn
-                combatant.tickStatusEffects(ui, true);
+                combatant.getStatus().tick(ui, true);
                 if (!combatant.isAlive()) continue;
 
                 processTurn(combatant);
@@ -61,7 +61,7 @@ public class BattleEngine {
                     ((Player) combatant).decrementCooldown();
                 }
                 // Status effects applied by other combatants tick at the end of the turn
-                combatant.tickStatusEffects(ui, false);
+                combatant.getStatus().tick(ui, false);
                 
                 if (checkBattleEnd()) {
                     return player.isAlive();

@@ -1,11 +1,9 @@
 package entity.combatant.interfaces;
 
-import java.util.List;
-
 import boundary.GameUI;
 import entity.combatant.Combatant;
+import entity.combatant.CombatantStatusEffects;
 import entity.effect.SmokeBombEffect;
-import entity.effect.StatusEffect;
 
 public interface SmokeBombable {
 
@@ -13,8 +11,7 @@ public interface SmokeBombable {
      * Grants access to the combatant's active status effects.
      * Implemented by Combatant — no duplication needed.
      */
-    List<entity.effect.StatusEffect> getStatusEffects();
-    void addStatusEffect(StatusEffect e);
+    CombatantStatusEffects getStatus();
     String getName();
 
 
@@ -24,11 +21,14 @@ public interface SmokeBombable {
      * no state field needed in any class.
      */
     default boolean isSmokeBombActive() {
-        return getStatusEffects().stream()
-                .anyMatch(e -> e instanceof SmokeBombEffect);
+        CombatantStatusEffects status = getStatus();
+        return status.contains(SmokeBombEffect.class);
     }
 
-    default void applySmokeBomb(int duration) { addStatusEffect(new SmokeBombEffect(duration)); }
+    default void applySmokeBomb(int duration) { 
+        CombatantStatusEffects status = getStatus();
+        status.add(new SmokeBombEffect(duration)); 
+    }
 
     default void attackedWithSmokeBomb(Combatant attacker, GameUI ui) {
         ui.displayActionResult(attacker.getName() + " attacks " + getName() + " -- 0 damage (Smoke Bomb active)!");

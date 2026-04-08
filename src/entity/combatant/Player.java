@@ -12,8 +12,8 @@ public abstract class Player extends Combatant implements Healable, SmokeBombabl
     protected List<Item> inventory;
     protected int specialCooldown = 0;
 
-
-    public Player(List<Item> items) {
+    public Player(String name, int hp, int attack, int defense, int speed, List<Item> items) {
+        super(name, hp, attack, defense, speed);
         this.inventory = new ArrayList<>(items);
     }
 

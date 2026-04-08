@@ -74,7 +74,7 @@ public class GameUI {
         for (Combatant c : combatants) {
             if (c.isAlive()) {
                 System.out.printf("  %-14s HP: %3d/%-3d  %s%n",
-                        c.getName(), c.getHp(), c.getMaxHp(), c.getStatusSummary());
+                        c.getName(), c.getHp(), c.getMaxHp(), c.getStatus().toString());
             }
         }
         System.out.println("=====================================================");

@@ -6,7 +6,11 @@ import boundary.GameUI;
 import entity.combatant.interfaces.SmokeBombable;
 import entity.combatant.interfaces.Stunnable;
 
-public abstract class Enemy extends Combatant implements Stunnable {
+public class Enemy extends Combatant implements Stunnable {
+
+    public Enemy(String name, int hp, int attack, int defense, int speed) {
+        super(name, hp, attack, defense, speed);
+    }
 
     public void takeTurn(List<Combatant> targets, GameUI ui) {
         if (targets.isEmpty()) return;

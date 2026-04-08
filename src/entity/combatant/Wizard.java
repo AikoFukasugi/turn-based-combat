@@ -8,13 +8,7 @@ import entity.item.Item;
 public class Wizard extends Player {
 
     public Wizard(List<Item> items) {
-        super(items);
-        this.name = "Wizard";
-        this.hp = 200;
-        this.maxHp = 200;
-        this.attack = 50;
-        this.defense = 10;
-        this.speed = 20;
+        super("Wizard", 200, 50, 10, 20, items);
     }
 
     @Override
