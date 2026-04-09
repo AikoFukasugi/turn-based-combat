@@ -2,7 +2,6 @@ package tests;
 
 import boundary.GameUI;
 import entity.combatant.CombatantStatusEffects;
-import entity.effect.ArcaneBonusEffect;
 import entity.effect.DefendEffect;
 import entity.effect.SmokeBombEffect;
 import entity.effect.StatusEffect;
@@ -24,14 +23,14 @@ public class CombatantStatusEffectsTest {
         System.out.println("Has StunEffect:      " + cse.contains(StunEffect.class));      // true
         System.out.println("Has DefendEffect:    " + cse.contains(DefendEffect.class));    // true
         System.out.println("Has SmokeBombEffect: " + cse.contains(SmokeBombEffect.class)); // true
-        System.out.println("Has ArcaneBonusEffect (absent): " + cse.contains(ArcaneBonusEffect.class)); // false
+        System.out.println("Has TestEffect (absent): " + cse.contains(TestEffect.class)); // false
 
         // ── get() ────────────────────────────────────────────
         System.out.println("\n--- get() ---");
         System.out.println("StunEffect list size:      " + cse.get(StunEffect.class).size());      // 1
         System.out.println("DefendEffect list size:    " + cse.get(DefendEffect.class).size());    // 2
         System.out.println("SmokeBombEffect list size: " + cse.get(SmokeBombEffect.class).size()); // 1
-        System.out.println("Absent type list size:     " + cse.get(ArcaneBonusEffect.class).size()); // 0
+        System.out.println("Absent type list size:     " + cse.get(TestEffect.class).size()); // 0
 
         // ── all() ─────────────────────────────────────────────
         System.out.println("\n--- all() ---");
@@ -41,7 +40,7 @@ public class CombatantStatusEffectsTest {
         System.out.println("\n--- getValue() ---");
         System.out.println("StunEffect value:           " + cse.getValue(StunEffect.class));      // 0
         System.out.println("DefendEffect value (20+20): " + cse.getValue(DefendEffect.class));    // 20
-        System.out.println("Absent type value:          " + cse.getValue(ArcaneBonusEffect.class)); // 0
+        System.out.println("Absent type value:          " + cse.getValue(TestEffect.class)); // 0
 
         // ── toString() ───────────────────────────────────────
         System.out.println("\n--- toString() ---");

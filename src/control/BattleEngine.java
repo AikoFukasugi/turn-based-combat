@@ -6,10 +6,11 @@ import java.util.stream.Collectors;
 
 import boundary.GameUI;
 import control.strategy.TurnOrderStrategy;
+import entity.action.ActionContext;
+import entity.action.interfaces.Action;
 import entity.combatant.Combatant;
 import entity.combatant.Enemy;
 import entity.combatant.Player;
-import entity.combatant.interfaces.Stunnable;
 import entity.level.Level;
 
 // SRP: manages battle flow only
@@ -49,20 +50,13 @@ public class BattleEngine {
                 allCombatants.stream().filter(Combatant::isAlive).collect(Collectors.toList()));
                 
             for (Combatant combatant : turnOrder) {
-                if (!combatant.isAlive()) continue;
                 // Status effects applied by self tick at the beginning of the next turn
+                // Cooldowns and Status effects applied by other combatants tick at the end of the turn
+                if (!combatant.isAlive()) continue;
                 combatant.getStatus().tick(ui, true);
                 if (!combatant.isAlive()) continue;
-
-                processTurn(combatant);
-                
-                // Decrement special cooldown after each of the player's turns
-                if (combatant instanceof Player) {
-                    ((Player) combatant).decrementCooldown();
-                }
-                // Status effects applied by other combatants tick at the end of the turn
+                takeTurn(combatant);
                 combatant.getStatus().tick(ui, false);
-                
                 if (checkBattleEnd()) {
                     return player.isAlive();
                 }
@@ -70,20 +64,13 @@ public class BattleEngine {
         }
     }
 
-    private void processTurn(Combatant combatant) {
-        if (combatant instanceof Stunnable && ((Stunnable) combatant).isStunned()) {
-            ((Stunnable) combatant).showStun(ui);
-            return;
-        }
-        if (combatant instanceof Player) {
-            List<Enemy> living = getLivingEnemies();
-            var action = ui.getPlayerAction((Player) combatant, living);
-            action.execute(combatant, allCombatants, ui);
-        } else if (combatant instanceof Enemy) {
-            List<Combatant> targets = new ArrayList<>();
-            if (player.isAlive()) targets.add(player);
-            ((Enemy) combatant).takeTurn(targets, ui);
-        }
+
+    public void takeTurn(Combatant combatant) {
+        ActionContext ctx = new ActionContext(combatant, allCombatants, null, ui);
+        Action chosen = combatant.chooseAction(ctx);
+        combatant.getActions().decrementCooldowns();
+        if (chosen == null) return;
+        chosen.execute(ctx);
     }
 
     private boolean checkBattleEnd() {

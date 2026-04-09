@@ -1,9 +1,6 @@
 package entity.item;
 
-import java.util.List;
-
-import boundary.GameUI;
-import entity.combatant.Combatant;
+import entity.action.ActionContext;
 
 public abstract class Item {
     protected String name;
@@ -12,5 +9,5 @@ public abstract class Item {
     public String getName() { return name; }
     public boolean isUsed() { return used; }
 
-    public abstract void use(Combatant actor, List<Combatant> targets, GameUI ui);
+    public abstract void use(ActionContext ctx);
 }

@@ -1,22 +1,19 @@
 package entity.item;
 
-import java.util.List;
-
-import boundary.GameUI;
-import entity.combatant.Combatant;
+import entity.action.ActionContext;
 import entity.combatant.interfaces.Healable;;
 
 public class Potion extends Item {
     public Potion() { this.name = "Potion"; }
 
     @Override
-    public void use(Combatant actor, List<Combatant> targets, GameUI ui) {
-        int before = actor.getHp();
-        if (actor instanceof Healable && !used) {
-            ((Healable) actor).heal(100);
+    public void use(ActionContext ctx) {
+        int before = ctx.actor.getHp();
+        if (ctx.actor instanceof Healable && !used) {
+            ((Healable) ctx.actor).heal(100);
             used = true;
-            ui.displayActionResult(actor.getName() + " uses Potion! HP: " + before +
-                    " → " + actor.getHp() + "/" + actor.getMaxHp());
+            ctx.ui.displayActionResult(ctx.actor.getName() + " uses Potion! HP: " + before +
+                    " → " + ctx.actor.getHp() + "/" + ctx.actor.getMaxHp());
         }
     }
 }

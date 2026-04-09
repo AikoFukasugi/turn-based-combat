@@ -1,8 +1,11 @@
 package entity.combatant;
 
+import entity.action.ActionContext;
+import entity.action.ActionMenu;
+import entity.action.interfaces.Action;
 import entity.effect.DefendEffect;
 
-public class Combatant {
+public abstract class Combatant {
     protected String name;
     protected int hp;
     protected int maxHp;
@@ -11,6 +14,7 @@ public class Combatant {
     protected int speed;
     protected boolean alive = true;
     protected CombatantStatusEffects status;
+    protected ActionMenu actions;
 
     public Combatant(String name, int hp, int attack, int defense, int speed) {
         this.name = name;
@@ -20,11 +24,14 @@ public class Combatant {
         this.defense = defense;
         this.speed = speed;
         this.status = new CombatantStatusEffects(name);
+        this.actions = new ActionMenu();
     }
+
+    public abstract Action chooseAction(ActionContext ctx);
 
     public void takeDamage(int dmg) {
         hp = Math.max(0, hp - dmg);
-        if (hp == 0) alive = false;
+        if (hp <= 0) alive = false;
     }
     
     public int getEffectiveDefense() {
@@ -33,6 +40,7 @@ public class Combatant {
     }
 
     public CombatantStatusEffects getStatus() { return status; }
+    public ActionMenu getActions() { return actions; }
 
 
     public void setHp(int hp) { this.hp = hp; }

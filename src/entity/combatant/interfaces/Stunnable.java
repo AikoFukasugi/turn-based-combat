@@ -21,9 +21,10 @@ public interface Stunnable {
         return status.contains(StunEffect.class);
     }
 
-    default void applyStun(int duration) {
+    default void applyStun(int duration, GameUI ui) {
         CombatantStatusEffects status = getStatus();
         status.add(new StunEffect(duration));
+        ui.displayActionResult(getName() + " is STUNNED for " + duration + " turns!");
     }
 
     default void showStun(GameUI ui) {

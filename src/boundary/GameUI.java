@@ -4,13 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import entity.action.Action;
-import entity.action.BasicAttack;
-import entity.action.DefendAction;
-import entity.action.ItemAction;
-import entity.action.SpecialSkillAction;
+import entity.action.interfaces.Action;
 import entity.combatant.Combatant;
-import entity.combatant.Enemy;
 import entity.combatant.Player;
 import entity.item.Item;
 import entity.level.Difficulty;
@@ -80,65 +75,17 @@ public class GameUI {
         System.out.println("=====================================================");
     }
 
-    public Action getPlayerAction(Player player, List<Enemy> livingEnemies) {
-        System.out.println("\nYour turn! Choose an action:");
-        System.out.println("1. Basic Attack");
-        System.out.println("2. Defend (+10 DEF this round + next)");
-
-        List<Item> usable = player.getUsableItems();
-        if (!usable.isEmpty()) {
-            System.out.println("3. Use Item");
-        } else {
-            System.out.println("3. Use Item  [NONE AVAILABLE]");
-        }
-
-        String cooldownMsg = player.getSpecialCooldown() > 0
-                ? "[COOLDOWN: " + player.getSpecialCooldown() + "]" : "[READY]";
-        System.out.println("4. Special Skill " + cooldownMsg);
-
-        int choice = readChoice(1, 4);
-        switch (choice) {
-            case 1: {
-                Combatant target = selectTarget(livingEnemies);
-                return new BasicAttack(target);
-            }
-            case 2:
-                return new DefendAction();
-            case 3: {
-                if (usable.isEmpty()) {
-                    System.out.println("No items available! Defaulting to Basic Attack.");
-                    Combatant target = selectTarget(livingEnemies);
-                    return new BasicAttack(target);
-                }
-                Item item = selectItem(usable);
-                List<Combatant> targets = new ArrayList<>(livingEnemies);
-                return new ItemAction(item, targets);
-            }
-            case 4: {
-                if (player.getSpecialCooldown() > 0) {
-                    System.out.println("Special skill on cooldown! Defaulting to Basic Attack.");
-                    Combatant target = selectTarget(livingEnemies);
-                    return new BasicAttack(target);
-                }
-                List<Combatant> targets = new ArrayList<>(livingEnemies);
-                return new SpecialSkillAction(targets);
-            }
-            default:
-                return new BasicAttack(livingEnemies.get(0));
-        }
-    }
-
-    private Combatant selectTarget(List<Enemy> enemies) {
+    public Combatant selectTarget(List<Combatant> combatants) {
         System.out.println("Select target:");
-        for (int i = 0; i < enemies.size(); i++) {
-            Enemy e = enemies.get(i);
-            System.out.printf("  %d. %-10s HP: %d%n", i + 1, e.getName(), e.getHp());
+        for (int i = 0; i < combatants.size(); i++) {
+            Combatant c = combatants.get(i);
+            System.out.printf("  %d. %-10s HP: %d%n", i + 1, c.getName(), c.getHp());
         }
-        int idx = readChoice(1, enemies.size()) - 1;
-        return enemies.get(idx);
+        int idx = readChoice(1, combatants.size()) - 1;
+        return combatants.get(idx);
     }
 
-    private Item selectItem(List<Item> items) {
+    public Item selectItem(List<Item> items) {
         System.out.println("Select item:");
         for (int i = 0; i < items.size(); i++) {
             System.out.printf("  %d. %s%n", i + 1, items.get(i).getName());
@@ -181,4 +128,45 @@ public class GameUI {
             System.out.println("Please enter a number between " + min + " and " + max + ".");
         }
     }
+
+    /**
+     * Displays all actions the combatant possesses.
+     * Greys out unready actions and only accepts valid input from ready ones.
+     *
+     * @param allActions   full action list to display
+     * @param readyActions subset that can currently be chosen
+     * @param owner        the acting combatant
+     */
+    public Action selectAction(List<Action> allActions,
+                                List<Action> readyActions,
+                                Combatant owner) {
+        System.out.println("\n" + owner.getName() + "'s turn -- choose an action:");
+
+        for (int i = 0; i < allActions.size(); i++) {
+            Action action = allActions.get(i);
+            boolean ready = readyActions.contains(action);
+
+            if (ready) {
+                System.out.printf("  %d. %s%n", i + 1, action.getLabel());
+            } else {
+                // Display but visually indicate unavailable
+                System.out.printf("  %d. %s  [UNAVAILABLE]%n", i + 1, action.getLabel());
+            }
+        }
+
+        // Only accept numbers that correspond to a ready action
+        while (true) {
+            System.out.print("> ");
+            try {
+                int input = Integer.parseInt(scanner.nextLine().trim());
+                if (input >= 1 && input <= allActions.size()) {
+                    Action chosen = allActions.get(input - 1);
+                    if (readyActions.contains(chosen)) {
+                        return chosen;
+                    }
+                }
+            } catch (NumberFormatException ignored) {}
+            System.out.println("Invalid choice. Please select a ready action.");
+        }
+}
 }
