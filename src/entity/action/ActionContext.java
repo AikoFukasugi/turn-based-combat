@@ -5,8 +5,8 @@ import java.util.stream.Collectors;
 
 import boundary.GameUI;
 import entity.combatant.Combatant;
-import entity.combatant.Enemy;
-import entity.combatant.Player;
+import entity.combatant.enemy.Enemy;
+import entity.combatant.player.Player;
 import entity.item.Item;
 
 /**

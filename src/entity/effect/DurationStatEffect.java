@@ -2,7 +2,7 @@ package entity.effect;
 
 import boundary.GameUI;
 import entity.combatant.Combatant;
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
 
 public class DurationStatEffect extends DurationEffect {
     protected final int value;

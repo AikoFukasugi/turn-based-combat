@@ -1,7 +1,7 @@
 package entity.combatant.interfaces;
 
-import entity.combatant.StatField;
-import entity.combatant.Stats;
+import entity.combatant.helpers.StatField;
+import entity.combatant.helpers.Stats;
 
 public interface Healable {
     int getHp();

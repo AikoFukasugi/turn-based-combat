@@ -3,9 +3,9 @@ package entity.level;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.combatant.Enemy;
-import entity.combatant.Goblin;
-import entity.combatant.Wolf;
+import entity.combatant.enemy.Enemy;
+import entity.combatant.enemy.Goblin;
+import entity.combatant.enemy.Wolf;
 
 public class Level {
     private final Difficulty difficulty;

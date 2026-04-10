@@ -2,6 +2,9 @@ package entity.combatant;
 
 import entity.action.ActionContext;
 import entity.action.interfaces.Action;
+import entity.combatant.helpers.ActionMenu;
+import entity.combatant.helpers.Stats;
+import entity.combatant.helpers.StatusManager;
 
 public abstract class Combatant {
     protected final String name;

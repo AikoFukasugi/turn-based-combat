@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.enemy;
 
 public class Goblin extends Enemy {
     private static int count = 0;

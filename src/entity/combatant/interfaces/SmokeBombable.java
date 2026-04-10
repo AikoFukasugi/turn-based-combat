@@ -2,7 +2,7 @@ package entity.combatant.interfaces;
 
 import boundary.GameUI;
 import entity.combatant.Combatant;
-import entity.combatant.StatusManager;
+import entity.combatant.helpers.StatusManager;
 import entity.effect.SmokeBombEffect;
 
 public interface SmokeBombable {

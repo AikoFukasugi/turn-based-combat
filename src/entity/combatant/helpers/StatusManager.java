@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.helpers;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import boundary.GameUI;
+import entity.combatant.Combatant;
 import entity.effect.NonStackableEffect;
 import entity.effect.StatusEffect;
 

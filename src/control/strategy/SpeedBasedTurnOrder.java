@@ -5,7 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import entity.combatant.Combatant;
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
 
 public class SpeedBasedTurnOrder implements TurnOrderStrategy {
     @Override

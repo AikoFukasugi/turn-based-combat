@@ -1,8 +1,9 @@
-package entity.combatant;
+package entity.combatant.enemy;
 
 import entity.action.ActionContext;
 import entity.action.enemy.EnemyBasicAttack;
 import entity.action.interfaces.Action;
+import entity.combatant.Combatant;
 import entity.combatant.interfaces.Stunnable;
 
 public class Enemy extends Combatant implements Stunnable {

@@ -1,7 +1,7 @@
 package entity.combatant.interfaces;
 
 import boundary.GameUI;
-import entity.combatant.StatusManager;
+import entity.combatant.helpers.StatusManager;
 import entity.effect.StunEffect;
 
 public interface Stunnable {

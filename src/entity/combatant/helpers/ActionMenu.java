@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.helpers;
 
 import java.util.ArrayList;
 import java.util.List;

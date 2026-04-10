@@ -3,7 +3,7 @@ package entity.action.player;
 import entity.action.ActionContext;
 import entity.action.interfaces.SelfAction;
 import entity.combatant.Combatant;
-import entity.combatant.Player;
+import entity.combatant.player.Player;
 
 public class ItemAction implements SelfAction {
 

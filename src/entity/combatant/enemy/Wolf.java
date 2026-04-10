@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.enemy;
 
 public class Wolf extends Enemy {
     private static int count = 0;

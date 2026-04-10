@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.player;
 
 import java.util.List;
 

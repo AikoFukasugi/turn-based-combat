@@ -1,6 +1,6 @@
 package entity.effect;
 
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
 
 public class DefendEffect extends DurationStatEffect {
     public DefendEffect() { 

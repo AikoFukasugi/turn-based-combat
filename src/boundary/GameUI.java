@@ -6,8 +6,8 @@ import java.util.Scanner;
 
 import entity.action.interfaces.Action;
 import entity.combatant.Combatant;
-import entity.combatant.Player;
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
+import entity.combatant.player.Player;
 import entity.item.Item;
 import entity.level.Difficulty;
 

@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +8,7 @@ import entity.action.ActionContext;
 import entity.action.interfaces.Action;
 import entity.action.player.DefendAction;
 import entity.action.player.ItemAction;
+import entity.combatant.Combatant;
 import entity.combatant.interfaces.Healable;
 import entity.combatant.interfaces.SmokeBombable;
 import entity.item.Item;

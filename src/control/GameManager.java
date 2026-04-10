@@ -4,9 +4,9 @@ import java.util.List;
 
 import boundary.GameUI;
 import control.strategy.SpeedBasedTurnOrder;
-import entity.combatant.Player;
-import entity.combatant.Warrior;
-import entity.combatant.Wizard;
+import entity.combatant.player.Player;
+import entity.combatant.player.Warrior;
+import entity.combatant.player.Wizard;
 import entity.item.Item;
 import entity.level.Difficulty;
 import entity.level.Level;

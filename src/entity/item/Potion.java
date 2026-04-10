@@ -1,7 +1,7 @@
 package entity.item;
 
 import entity.action.ActionContext;
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
 import entity.combatant.interfaces.Healable;;
 
 public class Potion extends Item {

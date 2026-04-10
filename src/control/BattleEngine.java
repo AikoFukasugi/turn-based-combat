@@ -9,8 +9,8 @@ import control.strategy.TurnOrderStrategy;
 import entity.action.ActionContext;
 import entity.action.interfaces.Action;
 import entity.combatant.Combatant;
-import entity.combatant.Enemy;
-import entity.combatant.Player;
+import entity.combatant.enemy.Enemy;
+import entity.combatant.player.Player;
 import entity.level.Level;
 
 // SRP: manages battle flow only

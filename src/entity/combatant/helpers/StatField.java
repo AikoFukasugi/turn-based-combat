@@ -1,4 +1,4 @@
-package entity.combatant;
+package entity.combatant.helpers;
 
 public enum StatField {
     maxHp,

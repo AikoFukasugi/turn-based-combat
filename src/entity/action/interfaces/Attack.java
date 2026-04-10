@@ -2,7 +2,7 @@ package entity.action.interfaces;
 
 import entity.action.ActionContext;
 import entity.combatant.Combatant;
-import entity.combatant.StatField;
+import entity.combatant.helpers.StatField;
 
 public interface Attack extends Action {
     default int getDamage(Combatant target, ActionContext ctx) {
